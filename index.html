@@ -1,0 +1,65 @@
+<!DocTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game</title>
+</head>
+<body> 
+    <h1 style="display: flex; justify-content: center;">Riddle Game </h1>
+
+  <label for="select">Choose difficulty:</label>
+  <select name="difficulty" id="select">
+    <option value="">--Please choose an option--</option>
+    <option value="hard">Hard</option>
+    <option value="medium">Medium</option>
+    <option value="easy">Easy</option>
+  </select>
+
+  <p id="question" style="display: none;">The question is: </p>
+  <p id="answer" style="display: none;">The answer is: </p>
+
+  <button id="showAnswerButton" onclick="showAnswer()">Show Answer</button>
+  <button id="showQuestionButton" onclick="showQuestion()">Show Question</button>
+
+  <script>
+    function getRandomRiddle(difficulty) {
+      fetch(`/riddle?difficulty=${difficulty}`)
+        .then(res => res.json())
+        .then(data => {
+         document.getElementById("question").textContent = `The question is: ${data.TheRiddle}`;
+         document.getElementById("answer").textContent = `The answer is: ${data.Answer}`;
+         document.getElementById("showAnswerButton").style.display = "block";
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
+   document.getElementById("select").addEventListener("change", function() {
+      const selectedDifficulty = this.value;
+      getRandomRiddle(selectedDifficulty);
+     document.getElementById("question").style.display = "none";
+     document.getElementById("answer").style.display = "none";
+     document.getElementById("showQuestionButton").style.display = "block";
+     document.getElementById("showAnswerButton").style.display = "block";
+
+
+
+    
+    });
+    function showAnswer() {
+     document.getElementById("answer").style.display = "block";
+     document.getElementById("showAnswerButton").style.display = "none";
+    }
+
+    function showQuestion() {
+     document.getElementById("question").style.display = "block";
+     document.getElementById("showQuestionButton").style.display = "none";
+
+
+    }
+
+
+  </script>
+</body>
+</html>
