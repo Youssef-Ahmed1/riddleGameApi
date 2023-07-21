@@ -10,24 +10,24 @@
 
   <label for="select">Choose difficulty:</label>
   <select name="difficulty" id="select">
-    <option value="">--Please choose an option--</option>
+    <option value="">--Please choose a difficulty</option>
     <option value="hard">Hard</option>
     <option value="medium">Medium</option>
     <option value="easy">Easy</option>
   </select>
 
-  <p id="question" style="display: none;">The question is: </p>
+  <p id="question" style="display: none;">The Riddle is: </p>
   <p id="answer" style="display: none;">The answer is: </p>
 
   <button id="showAnswerButton" onclick="showAnswer()">Show Answer</button>
-  <button id="showQuestionButton" onclick="showQuestion()">Show Question</button>
-<h3> to reset or get a question you have to choose a difficulty </h3>
+  <button id="showQuestionButton" onclick="showQuestion()">Show Riddle</button>
+<h3> to reset or get a Riddle you have to choose a difficulty </h3>
   <script>
     function getRandomRiddle(difficulty) {
       fetch(`/riddle?difficulty=${difficulty}`)
         .then(res => res.json())
         .then(data => {
-         document.getElementById("question").textContent = `The question is: ${data.TheRiddle}`;
+         document.getElementById("question").textContent = `The Riddle is: ${data.TheRiddle}`;
          document.getElementById("answer").textContent = `The answer is: ${data.Answer}`;
          document.getElementById("showAnswerButton").style.display = "block";
         })
