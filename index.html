@@ -21,6 +21,7 @@
 
   <button id="showAnswerButton" onclick="showAnswer()">Show Answer</button>
   <button id="showQuestionButton" onclick="showQuestion()">Show Riddle</button>
+  <button id = "reset" type="reset">reset</button>
 <h3> to reset or get a Riddle you have to choose a difficulty </h3>
   <script>
     function getRandomRiddle(difficulty) {
@@ -42,10 +43,14 @@
      document.getElementById("answer").style.display = "none";
      document.getElementById("showQuestionButton").style.display = "block";
      document.getElementById("showAnswerButton").style.display = "block";
-
-
-
-    
+    });
+    document.getElementById("reset").addEventListener("click", function() {
+      const selectedDifficulty = this.value;
+      getRandomRiddle(selectedDifficulty);
+     document.getElementById("question").style.display = "none";
+     document.getElementById("answer").style.display = "none";
+     document.getElementById("showQuestionButton").style.display = "block";
+     document.getElementById("showAnswerButton").style.display = "block";
     });
     function showAnswer() {
      document.getElementById("answer").style.display = "block";

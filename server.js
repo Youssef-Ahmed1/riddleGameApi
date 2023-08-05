@@ -199,21 +199,12 @@ let riddles =[
     'difficulty':'Hard',
     'TheRiddle':'Sally lives in a place where six months of the year is mild summer and the temperature drops significantly the other six months. She owns a lake where there is a small island. She wants to build a house on the island and needs to get materials there. She doesn’t have a boat, plane, or anything to transport them to the island. How does Sally solve this problem?',
 'Answer':'She waits to take the materials over during the colder months because the lake will freeze over, so she can walk over it.'
-},
-{
-    'difficulty':'unknown',
-    'TheRiddle':'unknown',
-'Answer':'unknown'
-}
-
-]
+}]
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
-  
 app.get('/riddle', (req, res) => {
     const selectedDifficulty = req.query.difficulty;
-  
     let riddlesByDifficulty = riddles;
   
     // Filter riddles by the selected difficulty if provided
